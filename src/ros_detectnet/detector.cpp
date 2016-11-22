@@ -66,6 +66,9 @@ std::vector<sensor_msgs::RegionOfInterest> Detector::detect(const cv::Mat& img)
     float x_right = *(n + 2);
     float y_bottom = *(n + 3);
 
+    if (!(x_left || y_top || x_right || y_bottom))
+      break;
+
     sensor_msgs::RegionOfInterest roi;
     roi.x_offset = x_left;
     roi.y_offset = y_top;

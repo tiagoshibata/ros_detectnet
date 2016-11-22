@@ -63,13 +63,13 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "detectnet_node");
+  ros::NodeHandle node;
 
   const std::string NET_DATA = ros::package::getPath("detectnet") + "/data/";
-  detector = new Detector(NET_DATA + "deploy.prototxt", NET_DATA + "/snapshot.caffemodel");
+  detector = new detectnet::Detector(NET_DATA + "deploy.prototxt", NET_DATA + "/snapshot.caffemodel");
 
-  ros::NodeHandle node;
   image_transport::ImageTransport transport(node);
-  transport.subscribe("/image", 1, imageCallback);
+  image_transport::Subscriber subscriber = transport.subscribe("/vision/usb_cam/image_raw", 1, imageCallback);
   publisher = node.advertise<sensor_msgs::RegionOfInterest>("detectnet", 100);
   ros::spin();
 
