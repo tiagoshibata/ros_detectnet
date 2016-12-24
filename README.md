@@ -1,7 +1,7 @@
-## Work in progress - The message format will change in the future, do not rely on this package!
+## Deprecated: Development moved to [ThundeRatz/ros_yolo2](https://github.com/ThundeRatz/ros_yolo2/), which provides much faster training and testing.
 
 # ROS DetectNet integration
-Integrates DetectNet models (eg. generated with [DIGITS](https://github.com/NVIDIA/DIGITS/)) with ROS, generating messages with position and confidence of detection.
+Integrates DetectNet models (eg. generated with [DIGITS](https://github.com/NVIDIA/DIGITS/)) with ROS, generating messages with positions of detections.
 
 ## Requirements
 * ROS (tested on kinetic)
@@ -23,7 +23,7 @@ This repository should be cloned to the `src` directory of your workspace. Alter
 Copy your model `deploy.prototxt` and a snapshot of the network's weights as `snapshot.caffemodel` to the data folder.
 
 ## ROS Topics
-Raw images are received in the `image` topic and results are published as [`sensor_msgs/RegionOfInterest`](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/RegionOfInterest.html) messages at `detectnet`. This will change in the future to a custom message with more information, such as confidence.
+Raw images are received in the `image` topic and results are published as [`sensor_msgs/RegionOfInterest`](http://docs.ros.org/kinetic/api/sensor_msgs/html/msg/RegionOfInterest.html) messages at `detectnet`.
 
 For example, the following launch file can be used to map a images from [usb_cam](http://wiki.ros.org/usb_cam) to detectnet:
 
